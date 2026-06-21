@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>雷速 · 信息参考与日常助手</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f6fafc;
+      color: #1a2b34;
+      line-height: 1.6;
+      padding: 0 16px;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 0 60px;
+    }
+
+    /* ---- 顶部导航 ---- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: #ffffff;
+      padding: 10px 20px;
+      border-radius: 60px;
+      box-shadow: 0 4px 14px rgba(0, 110, 110, 0.06);
+      margin-bottom: 36px;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      color: #0b6b6b;
+      background: #e0f3f0;
+      padding: 4px 16px;
+      border-radius: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1f4e4e;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #0b8f8f;
+      color: #0b6b6b;
+    }
+
+    /* ---- hero 区域 ---- */
+    .hero {
+      background: linear-gradient(145deg, #e5f5f2 0%, #d1ede8 100%);
+      border-radius: 40px;
+      padding: 36px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-text {
+      flex: 2 1 280px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.1rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      color: #084c4c;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      color: #1f4b4b;
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #075555;
+      border: 1px solid #b3ddd5;
+    }
+
+    .hero-illustration {
+      flex: 0 0 120px;
+      text-align: center;
+      background: #cce8e2;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      color: #0b6b6b;
+      margin: 16px auto;
+    }
+
+    @media (min-width: 600px) {
+      .hero-illustration {
+        margin: 0;
+      }
+    }
+
+    /* ---- 介绍 / 卡片网格 ---- */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #094d4d;
+      margin: 48px 0 20px;
+      border-left: 5px solid #0b8f8f;
+      padding-left: 14px;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 28px 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 24px 20px 28px;
+      box-shadow: 0 8px 20px rgba(0, 70, 70, 0.04);
+      transition: transform 0.2s, box-shadow 0.25s;
+      border: 1px solid #e5f2ee;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 28px rgba(0, 90, 80, 0.08);
+      border-color: #b3ddd5;
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      color: #0b7a7a;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: #0b4f4f;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card p, .card ul {
+      font-size: 0.96rem;
+      color: #2f4b4b;
+      margin-top: 6px;
+      flex: 1;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      list-style-type: square;
+    }
+
+    .card ul li {
+      margin-bottom: 6px;
+    }
+
+    .card .footnote {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #517a7a;
+      border-top: 1px dashed #d0e7e0;
+      padding-top: 12px;
+    }
+
+    /* ---- 三个场景模块（差异化卡片） ---- */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .scenario-item {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px 20px;
+      border-left: 8px solid;
+      box-shadow: 0 4px 10px rgba(0, 70, 60, 0.02);
+    }
+
+    .scenario-item:nth-child(1) { border-left-color: #2a9d8f; }
+    .scenario-item:nth-child(2) { border-left-color: #52b2a5; }
+    .scenario-item:nth-child(3) { border-left-color: #6fc4b6; }
+
+    .scenario-item h4 {
+      font-size: 1.2rem;
+      color: #0b4f4f;
+      margin-bottom: 10px;
+    }
+
+    .scenario-item p {
+      color: #2d5353;
+      font-size: 0.96rem;
+    }
+
+    /* ---- 常见说明 / FAQ 摘要 ---- */
+    .faq-mini {
+      background: #e8f4f0;
+      border-radius: 28px;
+      padding: 28px 26px;
+      margin: 32px 0 40px;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.4rem;
+      color: #094040;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .faq-item {
+      margin-bottom: 16px;
+    }
+
+    .faq-item strong {
+      color: #0b5e5e;
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      color: #2f5555;
+      font-size: 0.96rem;
+      padding-left: 10px;
+      border-left: 3px solid #aad4cb;
+    }
+
+    /* ---- 页脚内嵌链接 ---- */
+    .footer-note {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid #cdddd8;
+      text-align: center;
+      font-size: 0.94rem;
+      color: #3b6767;
+    }
+
+    .footer-note a {
+      color: #0b6b6b;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid #a0cfc5;
+      transition: border-color 0.2s;
+    }
+
+    .footer-note a:hover {
+      border-bottom-color: #074b4b;
+    }
+
+    /* 响应式小调整 */
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 1.7rem;
+      }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        border-radius: 32px;
+      }
+      .nav-links {
+        gap: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- 顶部导航 -->
+  <nav class="nav">
+    <span class="nav-brand">⚡ 雷速</span>
+    <ul class="nav-links">
+      <li><a href="#intro">概览</a></li>
+      <li><a href="#scenarios">场景</a></li>
+      <li><a href="#faq">说明</a></li>
+    </ul>
+  </nav>
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>平常查询 · 对照 · 延伸</h1>
+      <p>围绕 <a href="https://pages-leisu.com" style="color:#094d4d; font-weight:600; text-decoration:underline; text-underline-offset:3px;">雷速</a> 整理的信息页面，适合日常翻阅、快速对照与基础参考。没有繁杂跳转，只有经过梳理的内容。</p>
+      <span class="hero-highlight">📋 卡片化 · 轻量 · 可读</span>
+    </div>
+    <div class="hero-illustration">⚡</div>
+  </section>
+
+  <!-- 介绍 + 特点卡片（两列或三列） -->
+  <section id="intro">
+    <h2 class="section-title">介绍与特点</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-icon">🗂️</div>
+        <h3>结构化内容</h3>
+        <p>从概念到常见疑问，采用分类卡片与摘要形式展示。每个模块独立又互相关联，方便按需取用。</p>
+        <div class="footnote">适合快速浏览与局部查阅</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>对照式布局</h3>
+        <p>不同主题以并列卡片呈现，视觉上便于对比。减少来回滚动，提升信息获取效率。</p>
+        <div class="footnote">移动端自动适配列数</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📎</div>
+        <h3>延伸阅读标记</h3>
+        <p>每个模块末尾提供相关提示或补充说明，帮助感兴趣的人继续探索。内容保持克制，不堆砌。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三个场景模块（日常查询、对照、延伸阅读） -->
+  <section id="scenarios">
+    <h2 class="section-title">日常使用场景</h2>
+    <div class="scenario-grid">
+      <div class="scenario-item">
+        <h4>📖 日常查询</h4>
+        <p>需要快速确认某个条目或概念时，直接定位到对应卡片。索引清晰，无需层层翻页。常用术语与简短说明均已整合。</p>
+      </div>
+      <div class="scenario-item">
+        <h4>⚖️ 对照参考</h4>
+        <p>将相似条目并排放置，差异一目了然。适合对比版本、分类或属性。卡片内包含关键要点与注意事项。</p>
+      </div>
+      <div class="scenario-item">
+        <h4>🌱 延伸阅读</h4>
+        <p>每个卡片底部的“延伸”区域提供相关话题或外部线索。保持开放但不偏离主题，方便做进一步了解。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见说明 (FAQ 摘要) -->
+  <section id="faq" class="faq-mini">
+    <h3>❓ 常见说明</h3>
+    <div class="faq-item">
+      <strong>这个页面主要做什么？</strong>
+      <p>围绕 <a href="https://pages-leisu.com" style="color:#094d4d; font-weight:600;">雷速</a> 提供的基础介绍、场景分类与答案提示，适合作为日常轻量参考页，不替代深度资料。</p>
+    </div>
+    <div class="faq-item">
+      <strong>内容会更新吗？</strong>
+      <p>采用静态卡片架构，内容经过整理后保持稳定，若有重要调整会及时补充。当前版本以清晰与准确为主。</p>
+    </div>
+    <div class="faq-item">
+      <strong>是否可以自行扩展？</strong>
+      <p>卡片与网格布局预留了弹性空间，你可以根据实际需要增加或调整模块。所有内容均基于通用信息整理。</p>
+    </div>
+  </section>
+
+  <!-- 页脚 自然嵌入链接 -->
+  <div class="footer-note">
+    本页面为信息参考用途，主要围绕 <a href="https://pages-leisu.com">雷速</a> 整理。内容保持真实与克制，希望对你的日常阅读有所帮助。
+  </div>
+</div>
+</body>
+</html>
